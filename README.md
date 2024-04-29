@@ -1,4 +1,12 @@
+- [References](#references)
 - [Sample Hardhat Project](#sample-hardhat-project)
+- [Notes](#notes)
+  - [hardhat init](#hardhat-init)
+  - [hardhat-deploy package](#hardhat-deploy-package)
+
+# References
+- https://github.com/PatrickAlphaC/hardhat-fund-me-fcc
+- https://github.com/wighawag/hardhat-deploy?tab=readme-ov-file  
 
 # Sample Hardhat Project
 
@@ -14,3 +22,19 @@ npx hardhat node
 npx hardhat ignition deploy ./ignition/modules/Lock.js
 ```
 
+# Notes
+## hardhat init
+hardhat does not provide advanced project option (at least not on ^2.22.3), therefore folder structure needs to be built manually.
+
+## hardhat-deploy package
+Hardhat-deploy package here: https://github.com/wighawag/hardhat-deploy?tab=readme-ov-file  
+`npm install hardhat-deploy`  
+`npm install -D hardhat-deploy`
+
+And add the following statement to your hardhat.config.js:  
+`require('hardhat-deploy');`
+
+if you use ethers.js we recommend you also install hardhat-deploy-ethers which add extra features to access deployments as ethers contract.  
+`npm install --save-dev  @nomiclabs/hardhat-ethers hardhat-deploy-ethers ethers`
+
+More details on hardhat-deploy-ethers repo: https://github.com/wighawag/hardhat-deploy-ethers#readme
