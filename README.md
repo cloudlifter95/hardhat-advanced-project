@@ -31,6 +31,10 @@ Hardhat-deploy package here: https://github.com/wighawag/hardhat-deploy?tab=read
 `npm install hardhat-deploy`  
 `npm install -D hardhat-deploy`
 
+when deploying (yarn hardhat deploy), hardhat-deploy package compiles and all contracts under contracts/ folder.
+In addition, it runs all scripts under deploy/ folder.
+**hre** is enriched with 4 new fields and passed to the exported functions of the deploy/*.js files.
+
 And add the following statement to your hardhat.config.js:  
 `require('hardhat-deploy');`
 
