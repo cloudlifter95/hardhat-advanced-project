@@ -1,3 +1,4 @@
+const path = require("path");
 const { network } = require("hardhat");
 const DECIMALS = "8";
 const INITIAL_PRICE = "200000000000";
@@ -6,8 +7,11 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
     const { deploy, log } = deployments;
     const { deployer } = await getNamedAccounts();
     const chainId = network.config.chainId;
-    console.log(chainId);
 
+    log("----------------------------------------------------");
+    console.log(path.basename(__filename));
+    log("------------------");
+    console.log(chainId);
     const other_way_chainId = await getChainId();
     console.log(other_way_chainId);
 
@@ -21,7 +25,6 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
             args: [DECIMALS, INITIAL_PRICE],
         });
         log("Mocks Deployed!");
-        log("------------------------------------------------");
         log("trying mocked aggregator contrator ...");
         mockedAggregator = await ethers.getContract("MockV3Aggregator");
         // console.log(mockedAggregator);
