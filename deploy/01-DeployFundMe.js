@@ -27,5 +27,5 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
         waitConfirmations: network.config.blockConfirmations || 1,
     });
     log(`FundMe deployed at ${fundMe.address}`);
-    log("------------------------------------------------");
+    log("----------------------------------------------------");
 };

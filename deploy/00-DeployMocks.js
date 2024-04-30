@@ -30,7 +30,7 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
         // console.log(mockedAggregator);
         decimals = await mockedAggregator.decimals();
         console.log(decimals);
-        log("------------------------------------------------");
+        log("----------------------------------------------------");
     }
 };
 
