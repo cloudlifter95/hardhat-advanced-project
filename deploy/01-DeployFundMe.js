@@ -1,5 +1,5 @@
 const path = require("path");
-const { network, getNamedAccounts } = require("hardhat");
+const { network, getNamedAccounts, ethers } = require("hardhat");
 const {
     networkConfig,
     developmentChains,
@@ -23,7 +23,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
         ethUsdPriceFeedAddress = networkConfig[chainId]["ethUsdPriceFeed"];
     }
     log("Deploying FundMe and waiting for confirmations...");
-    const fundMe = await deploy("FundMe", {
+    let fundMe = await deploy("FundMe", {
         contract: "FundMe",
         from: deployer,
         args: [ethUsdPriceFeedAddress],
@@ -38,4 +38,12 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
         await verify(fundMe.address, [ethUsdPriceFeedAddress]);
     }
     log("----------------------------------------------------");
+
+    // const sendValue = await ethers.parseEther("0.05");
+    // fundMe = await ethers.getContract("FundMe", deployer);
+    // await fundMe.fund({ value: sendValue });
+    // const response = await fundMe.addressToAmountFunded(deployer);
+    // console.log(response);
 };
+
+module.exports.tags = ['all'];

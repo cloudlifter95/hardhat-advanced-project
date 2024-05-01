@@ -8,30 +8,32 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
     const { deployer } = await getNamedAccounts();
     const chainId = network.config.chainId;
 
-    log("----------------------------------------------------");
+    console.log("----------------------------------------------------");
     console.log(path.basename(__filename));
-    log("------------------");
-    console.log(chainId);
+    console.log("------------------");
+    console.log("chainId", chainId);
     const other_way_chainId = await getChainId();
     console.log(other_way_chainId);
 
-    console.log(deployer);
+    console.log("deployer:", deployer);
     if (chainId == 31337) {
-        log("Local network. Deploying mocks ...");
+        console.log("Local network. Deploying mocks ...");
         await deploy("MockV3Aggregator", {
             contract: "MockV3Aggregator",
             from: deployer,
             log: true,
             args: [DECIMALS, INITIAL_PRICE],
         });
-        log("Mocks Deployed!");
-        log("trying mocked aggregator contrator ...");
         mockedAggregator = await ethers.getContract("MockV3Aggregator");
+        mockedAggregatorAddress = await mockedAggregator.getAddress();
+        console.log(`Aggregator mock Deployed at ${mockedAggregatorAddress}!`);
+        console.log(" ... trying mocked aggregator contrator ...");
         // console.log(mockedAggregator);
         decimals = await mockedAggregator.decimals();
         console.log(decimals);
-        log("----------------------------------------------------");
+        console.log(" ... done.");
+        console.log("----------------------------------------------------");
     }
 };
 
-//getChainId
+module.exports.tags = ["all"];

@@ -3,6 +3,7 @@ pragma solidity ^0.8.8;
 
 import "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol";
 import "./PriceConverter.sol";
+import "hardhat/console.sol";
 
 error NotOwner();
 
@@ -24,6 +25,7 @@ contract FundMe {
 
     function fund() public payable {
         require(msg.value.getConversionRate(s_priceFeed) >= MINIMUM_USD, "You need to spend more ETH!");
+        console.log('nok');
         // require(PriceConverter.getConversionRate(msg.value) >= MINIMUM_USD, "You need to spend more ETH!");
         addressToAmountFunded[msg.sender] += msg.value;
         funders.push(msg.sender);
@@ -37,6 +39,10 @@ contract FundMe {
 
     function getPriceFeed() public view returns (AggregatorV3Interface) {
         return s_priceFeed;
+    }
+
+    function getFunders() public view returns (address[] memory) {
+        return funders;
     }
     
     modifier onlyOwner {
@@ -58,6 +64,7 @@ contract FundMe {
         // require(sendSuccess, "Send failed");
         // call
         (bool callSuccess, ) = payable(msg.sender).call{value: address(this).balance}("");
+        // (bool callSuccess, ) = payable(msg.sender).transfer(address(this).balance);
         require(callSuccess, "Call failed");
     }
     // Explainer from: https://solidity-by-example.org/fallback/
