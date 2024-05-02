@@ -19,6 +19,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     if (chainId == 31337) {
         const ethUsdAggregator = await deployments.get("MockV3Aggregator"); // expected to be deployed by 00-DeployMocks.js
         ethUsdPriceFeedAddress = ethUsdAggregator.address;
+        // console.log('-------------------------------------------------------------------------------------------',ethUsdPriceFeedAddress);
     } else {
         ethUsdPriceFeedAddress = networkConfig[chainId]["ethUsdPriceFeed"];
     }
@@ -46,4 +47,4 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     // console.log(response);
 };
 
-module.exports.tags = ['all'];
+module.exports.tags = ["all"];

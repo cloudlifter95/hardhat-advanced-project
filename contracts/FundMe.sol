@@ -5,7 +5,7 @@ import "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.so
 import "./PriceConverter.sol";
 import "hardhat/console.sol";
 
-error NotOwner();
+error NotOwner(string message);
 
 contract FundMe {
     using PriceConverter for uint256;
@@ -25,7 +25,7 @@ contract FundMe {
 
     function fund() public payable {
         require(msg.value.getConversionRate(s_priceFeed) >= MINIMUM_USD, "You need to spend more ETH!");
-        console.log('nok');
+        // console.log('ok');
         // require(PriceConverter.getConversionRate(msg.value) >= MINIMUM_USD, "You need to spend more ETH!");
         addressToAmountFunded[msg.sender] += msg.value;
         funders.push(msg.sender);
@@ -44,10 +44,14 @@ contract FundMe {
     function getFunders() public view returns (address[] memory) {
         return funders;
     }
+
+    function getAddressToAmountFunded(address funder) public view returns (uint256) {
+        return addressToAmountFunded[funder];
+    }
     
     modifier onlyOwner {
         // require(msg.sender == owner);
-        if (msg.sender != i_owner) revert NotOwner();
+        if (msg.sender != i_owner) revert NotOwner("Only the owner can perform this action");
         _;
     }
     
