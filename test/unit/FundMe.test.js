@@ -124,5 +124,11 @@ describe("FundMe", function () {
                 BigInt(deployer_balance)
             );
         });
+        it("getVersionOfPriceFeed_function: returns price feed", async () => {
+            const fundMe_v = await fundMe.getVersionOfPriceFeed();
+            const mock_v = await mockV3Aggregator.version();
+            console.log('versions ', fundMe_v, mock_v);
+            assert.equal(fundMe_v, mock_v);
+        });
     });
 });
