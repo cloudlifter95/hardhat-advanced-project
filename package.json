@@ -1,7 +1,7 @@
 {
   "name": "hardhat-advanced-project",
   "version": "1.0.0",
-  "main": "index.js",
+  "author": "myjen",
   "license": "MIT",
   "devDependencies": {
     "@chainlink/contracts": "^1.1.0",
@@ -24,5 +24,13 @@
     "solhint": "^4.5.4",
     "solidity-coverage": "^0.8.0",
     "typechain": "^8.3.0"
+  },
+  "scripts": {
+    "test": "hardhat test",
+    "test:staging": "hardhat test --network sepolia",
+    "lint": "solhint 'contracts/**/*.sol'",
+    "lint:fix": "solhint 'contracts/**/*.sol' --fix",
+    "format": "prettier --write .",
+    "coverage": "hardhat coverage"
   }
 }
