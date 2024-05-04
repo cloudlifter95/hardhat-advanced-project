@@ -3,6 +3,8 @@
 - [Notes](#notes)
   - [hardhat init](#hardhat-init)
   - [hardhat-deploy package](#hardhat-deploy-package)
+- [Frontend - Mini dapp](#frontend---mini-dapp)
+  - [Dapp minimal architecture](#dapp-minimal-architecture)
 
 # References
 - https://github.com/PatrickAlphaC/hardhat-fund-me-fcc
@@ -42,3 +44,7 @@ if you use ethers.js we recommend you also install hardhat-deploy-ethers which a
 `npm install --save-dev  @nomiclabs/hardhat-ethers hardhat-deploy-ethers ethers`
 
 More details on hardhat-deploy-ethers repo: https://github.com/wighawag/hardhat-deploy-ethers#readme
+
+# Frontend - Mini dapp
+## Dapp minimal architecture
+![alt text](img/image.png)
