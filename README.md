@@ -5,6 +5,7 @@
   - [hardhat-deploy package](#hardhat-deploy-package)
 - [Frontend - Mini dapp](#frontend---mini-dapp)
   - [Dapp minimal architecture](#dapp-minimal-architecture)
+  - [deployment steps](#deployment-steps)
 
 # References
 - https://github.com/PatrickAlphaC/hardhat-fund-me-fcc
@@ -48,3 +49,14 @@ More details on hardhat-deploy-ethers repo: https://github.com/wighawag/hardhat-
 # Frontend - Mini dapp
 ## Dapp minimal architecture
 ![alt text](img/image.png)
+
+## deployment steps
+- start a localhost node, or deploy contract within testnet if not already.
+  - localhost: `yarn hardhat node` (under the project root / folder)
+- Onboard localhost chain in metamask: 
+```diff
+- DO NOT USE PERSONAL PRIVATE KEYS. CREATE NEW ONES SPECIFICALLY FOR THE TEST, OR USE HARDHAT KEYS.
+```
+- Ensure abi and contract addresses under exports.js are correct before proceeding.
+- build with: `yarn build` (make sure you are under the frontend/ folder for this step)
+- open frontend/index.html
