@@ -19,7 +19,7 @@ developmentChains.includes(network.name)
               await fundTxResponse.wait(1);
               const withdrawTxResponse = await fundMe.withdraw();
               await withdrawTxResponse.wait(1);
-            //   console.log("ok", fundMe, deployer);
+              //   console.log("ok", fundMe, deployer);
               const endingFundMeBalance = await ethers.provider.getBalance(
                   await fundMe.getAddress()
               );
